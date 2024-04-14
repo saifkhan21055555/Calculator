@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materialize Calculator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+    #screen {
+      font-size: 2rem;
+      text-align: right;
+    }
+    .btn {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3 class="center-align">Materialize Calculator</h3>
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <div class="card">
+          <div class="card-content">
+            <input id="screen" type="text" disabled>
+            <div class="row">
+              <button class="col s3 btn waves-effect waves-light red lighten-2" onclick="clearScreen()">AC</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('/')">/</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('*')">x</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('-')">-</button>
+            </div>
+            <div class="row">
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('7')">7</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('8')">8</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('9')">9</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('+')">+</button>
+            </div>
+            <div class="row">
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('4')">4</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('5')">5</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('6')">6</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="calculate()">=</button>
+            </div>
+            <div class="row">
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('1')">1</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('2')">2</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('3')">3</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('.')">.</button>
+            </div>
+            <div class="row">
+              <button class="col s6 btn waves-effect waves-light" onclick="appendToScreen('0')">0</button>
+              <button class="col s3 btn waves-effect waves-light" onclick="appendToScreen('')"> </button>
+              <button class="col s3 btn waves-effect waves-light" onclick="deleteLast()">DEL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    let screen = document.getElementById('screen');
+
+    function appendToScreen(value) {
+      screen.value += value;
+    }
+
+    function clearScreen() {
+      screen.value = '';
+    }
+
+    function deleteLast() {
+      screen.value = screen.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        screen.value = eval(screen.value);
+      } catch (error) {
+        screen.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
